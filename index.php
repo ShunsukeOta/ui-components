@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UI Components Catalog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- =========================
+       Skip Link
+  ========================== -->
+  <a class="c-skiplink" href="#main">本文へスキップ</a>
+
+  <!-- =========================
+       Header
+  ========================== -->
+  <header class="c-header" role="banner">
+    <input type="checkbox" id="nav-open" class="c-header__checkbox" hidden>
+    <div class="c-header__bar">
+      <h1 class="c-header__logo">
+        <a href="/" class="c-header__logo-link">
+          <img src="/img/logo.svg" width="120" height="28" alt="サイト名">
+          <span class="u-visually-hidden">サイト名（テキストロゴ）</span>
+        </a>
+      </h1>
+      <nav class="c-header__nav" aria-label="グローバルナビゲーション">
+        <ul class="c-header__list">
+          <li class="c-header__item"><a class="c-header__link" href="#section-text">テキスト</a></li>
+          <li class="c-header__item"><a class="c-header__link" href="#section-lists">リスト</a></li>
+          <li class="c-header__item c-header__item--has-sub">
+            <details class="c-header__details">
+              <summary class="c-header__link">コンポーネント</summary>
+              <ul class="c-header__submenu">
+                <li><a href="#section-cards-2col">カード2列</a></li>
+                <li><a href="#section-compare">比較表</a></li>
+                <li><a href="#section-reviews">レビュー</a></li>
+              </ul>
+            </details>
+          </li>
+          <li class="c-header__item"><a class="c-header__link" href="#section-footer">フッター</a></li>
+        </ul>
+      </nav>
+      <div class="c-header__actions">
+        <form class="c-header__search" role="search" action="/search" method="get">
+          <input class="c-header__search-input" type="search" name="q" placeholder="検索" aria-label="サイト内検索">
+        </form>
+        <a class="c-btn c-btn--primary c-header__cta" href="#section-sticky-cta">無料ではじめる</a>
+        <label class="c-header__toggle" for="nav-open" aria-label="メニューを開閉">
+          <span class="c-header__toggle-bar"></span>
+          <span class="c-header__toggle-bar"></span>
+          <span class="c-header__toggle-bar"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Drawer (mobile) -->
+    <div class="c-header__drawer" id="global-nav">
+      <nav class="c-header__drawer-nav" aria-label="モバイルナビ">
+        <ul class="c-header__drawer-list">
+          <li><a href="#section-text">テキスト</a></li>
+          <li><a href="#section-lists">リスト</a></li>
+          <li>
+            <details>
+              <summary>主要コンポーネント</summary>
+              <ul>
+                <li><a href="#section-cards-2col">カード2列</a></li>
+                <li><a href="#section-cards-3col">カード3列</a></li>
+                <li><a href="#section-compare">比較表</a></li>
+                <li><a href="#section-reviews">レビュー</a></li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="#section-footer">フッター</a></li>
+          <li><a class="c-btn c-btn--primary c-btn--block" href="#section-sticky-cta">無料ではじめる</a></li>
+        </ul>
+      </nav>
+      <label for="nav-open" class="c-header__overlay" aria-hidden="true"></label>
+    </div>
+  </header>
+
+  <!-- 出現トリガー（ヒーローの直後など） -->
+<div class="c-mini-cta__sentinel" aria-hidden="true"></div>
+
+<!-- 閉じる用チェックボックス（同一ページ内で非表示を保持） -->
+<input type="checkbox" id="mini-cta-close" class="c-mini-cta__close-checkbox" hidden>
+
+<!-- ミニCTA本体 -->
+<div class="c-mini-cta" role="region" aria-label="お知らせと申込み導線">
+  <div class="c-mini-cta__inner">
+    <p class="c-mini-cta__text">
+      <strong>【今月限定】初月 ¥0 + 独自ドメイン無料</strong> — 乗り換えも5分で完了
+    </p>
+    <div class="c-mini-cta__actions">
+      <a class="c-btn c-btn--primary" href="#section-pricing">今すぐ申し込む</a>
+      <a class="c-btn c-btn--outline" href="#section-compare">プラン比較</a>
+    </div>
+  </div>
+  <label for="mini-cta-close" class="c-mini-cta__close" aria-label="このお知らせを閉じる">×</label>
+</div>
+
+<!-- 出現制御（最少JS / ページ内のみ） -->
+<script>
+(() => {
+  const cta = document.querySelector('.c-mini-cta');
+  const closeCb = document.getElementById('mini-cta-close');
+  const sentinel = document.querySelector('.c-mini-cta__sentinel') || document.querySelector('#main');
+
+  if (!cta || !sentinel) return;
+
+  // 閉じていたら常に非表示
+  const update = (visible) => {
+    if (closeCb && closeCb.checked) { cta.classList.remove('is-visible'); return; }
+    cta.classList.toggle('is-visible', !!visible);
+  };
+
+  // スクロール位置で出現（番兵が見えなくなったら表示）
+  const io = new IntersectionObserver(([entry]) => update(!entry.isIntersecting), {
+    root: null, threshold: 0, rootMargin: '0px'
+  });
+  io.observe(sentinel);
+
+  // 閉じる操作の監視
+  closeCb && closeCb.addEventListener('change', () => update(false));
+})();
+</script>
+
+
+  <main id="main">
+    <!-- =========================
+         カタログ目次
+    ========================== -->
+    <section id="section-catalog-toc" class="c-section">
+      <nav class="c-toc" aria-label="コンポーネント目次">
+        <div class="c-toc__title">コンポーネント一覧</div>
+        <ul class="c-toc__list">
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-text">テキスト</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-lists">リスト / 目次</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-quote">引用・区切り</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-code">コード</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-media">画像・メディア</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-table">テーブル（基本）</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-table-sticky">テーブル（列固定）</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-compare">比較表（SPはカード）</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-buttons">ボタン系</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-info">アラート / お知らせ / FAQ</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-breadcrumb">パンくず / ページ送り / 検索</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-cards">カード（単体）</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-cards-2col">カードグリッド（2列）</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-cards-3col">カードグリッド（3列）</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-pricing">価格ブロック</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-highlight">区切り / 背景付き強調</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-reviews">レビュー / スニペット</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-form">問い合わせフォーム</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-skeleton">スケルトン</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-sidenav">サイドナビ</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-sticky-cta">スティッキーCTA</a></li>
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-footer">フッターナビ</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <!-- =========================
+         テキスト
+    ========================== -->
+    <section id="section-text" class="c-section">
+      <h2 class="c-heading c-heading--h2">テキスト</h2>
+      <h1 class="c-heading c-heading--h1">これは H1 見出しです</h1>
+      <h2 class="c-heading c-heading--h2">これは H2 見出しです</h2>
+      <h3 class="c-heading c-heading--h3">これは H3 見出しです</h3>
+      <h4 class="c-heading c-heading--h4">これは H4 見出しです</h4>
+      <p class="c-text">通常段落。<a href="#">リンク例</a></p>
+      <p class="c-text">これは <span class="c-text--bold">太字</span> と <span class="c-text--emphasis">強調</span>。</p>
+      <p class="c-text"><span class="c-text--note">※ 注釈テキストです。</span></p>
+      <p class="c-text"><span class="c-text--small">補足テキスト（small）。</span></p>
+      <p class="c-text">強調の <span class="c-highlight">ハイライト</span> 表現。</p>
+    </section>
+
+    <!-- =========================
+         リスト / 目次
+    ========================== -->
+    <section id="section-lists" class="c-section">
+      <h2 class="c-heading c-heading--h2">リスト / 目次</h2>
+      <h3 class="c-heading c-heading--h3">箇条書き</h3>
+      <ul class="c-list c-list--unordered">
+        <li>項目A</li>
+        <li>項目B
+          <ul>
+            <li>入れ子B-1</li>
+            <li>入れ子B-2</li>
+          </ul>
+        </li>
+        <li>項目C</li>
+      </ul>
+
+      <h3 class="c-heading c-heading--h3">番号付き</h3>
+      <ol class="c-list c-list--ordered">
+        <li>手順1</li>
+        <li>手順2</li>
+        <li>手順3</li>
+      </ol>
+
+      <h3 class="c-heading c-heading--h3">定義リスト</h3>
+      <dl class="c-list c-list--definition">
+        <dt>HTML</dt><dd>マークアップ言語。</dd>
+        <dt>CSS</dt><dd>スタイル指定の言語。</dd>
+      </dl>
+
+      <h3 class="c-heading c-heading--h3">目次コンポーネント</h3>
+      <nav class="c-toc">
+        <div class="c-toc__title">サンプル目次</div>
+        <ul class="c-toc__list">
+          <li class="c-toc__item"><a class="c-toc__link" href="#section-text">1. テキスト</a></li>
+          <li class="c-toc__item">
+            <a class="c-toc__link" href="#section-lists">2. リスト</a>
+            <ul class="c-toc__list">
+              <li class="c-toc__item"><a class="c-toc__link" href="#section-lists">2-1. 箇条書き</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </section>
+
+    <!-- =========================
+         引用・区切り
+    ========================== -->
+    <section id="section-quote" class="c-section">
+      <h2 class="c-heading c-heading--h2">引用・区切り</h2>
+      <blockquote class="c-quote">
+        <p>成果を最短で出すには、ユーザーの不安を先回りして解消する設計が不可欠です。</p>
+        <cite class="c-quote__cite">— Growth Team, CSN Lab</cite>
+      </blockquote>
+      <aside class="c-quote c-quote--pull">
+        <p>「比較表と実ユーザーの声」がCVに最も効く。</p>
+      </aside>
+      <hr class="c-divider" />
+    </section>
+
+    <!-- =========================
+         コード
+    ========================== -->
+    <section id="section-code" class="c-section">
+      <h2 class="c-heading c-heading--h2">コード</h2>
+      <pre class="c-code" data-lang="HTML"><code>&lt;a href="#" class="c-btn c-btn--primary"&gt;CTA&lt;/a&gt;</code></pre>
+      <p class="c-text">インラインコード例： <code class="c-code c-code--inline">display: inline-block;</code></p>
+    </section>
+
+    <!-- =========================
+         画像・メディア
+    ========================== -->
+    <section id="section-media" class="c-section">
+      <h2 class="c-heading c-heading--h2">画像・メディア</h2>
+      <img class="c-image c-image--responsive" src="https://via.placeholder.com/960x540" width="960" height="540" alt="商品の使用イメージ">
+      <figure class="c-figure">
+        <img class="c-image c-image--responsive" src="https://via.placeholder.com/800x450" width="800" height="450" alt="UIのスクリーンショット">
+        <figcaption class="c-figure__caption">※ 実機表示は端末によって若干異なります。</figcaption>
+      </figure>
+      <picture class="c-picture">
+        <source srcset="https://via.placeholder.com/1200x630.webp" type="image/webp" media="(min-width: 768px)">
+        <source srcset="https://via.placeholder.com/640x360.webp" type="image/webp">
+        <img class="c-image c-image--responsive" src="https://via.placeholder.com/1200x630" width="1200" height="630" alt="ヒーローイメージ">
+      </picture>
+    </section>
+
+    <!-- =========================
+         テーブル（基本）
+    ========================== -->
+    <section id="section-table" class="c-section">
+      <h2 class="c-heading c-heading--h2">テーブル（基本）</h2>
+      <div class="c-table-wrap">
+        <table class="c-table c-table--striped">
+          <caption class="c-table__caption">主要プランの比較</caption>
+          <thead>
+            <tr>
+              <th>プラン</th>
+              <th>月額</th>
+              <th>特徴</th>
+              <th>おすすめ度</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Basic</th>
+              <td>¥980</td>
+              <td>必要最低限の機能</td>
+              <td>★★★☆☆</td>
+            </tr>
+            <tr>
+              <th scope="row">Standard</th>
+              <td>¥1,980</td>
+              <td>定番・迷ったらこれ</td>
+              <td>★★★★☆</td>
+            </tr>
+            <tr>
+              <th scope="row">Premium</th>
+              <td>¥2,980</td>
+              <td>サポートと速度が強い</td>
+              <td>★★★★★</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="c-table__note">※ 表示価格は税込。キャンペーンにより変動する場合があります。</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- =========================
+         テーブル（特定列を固定）
+    ========================== -->
+    <section id="section-table-sticky" class="c-section">
+      <h2 class="c-heading c-heading--h2">テーブル（特定列を固定表示）</h2>
+
+      <h3 class="c-heading c-heading--h3">左端（1列目）固定</h3>
+      <div class="c-table-wrap">
+        <table class="c-table c-table--striped c-table--sticky-col-first">
+          <thead>
+            <tr>
+              <th>プラン</th>
+              <th>月額</th>
+              <th>転送量</th>
+              <th>ストレージ</th>
+              <th>サポート</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Basic</th>
+              <td>¥980</td><td>3TB</td><td>100GB</td><td>平日</td>
+            </tr>
+            <tr>
+              <th scope="row">Standard</th>
+              <td>¥1,980</td><td>6TB</td><td>300GB</td><td>毎日</td>
+            </tr>
+            <tr>
+              <th scope="row">Premium</th>
+              <td>¥2,980</td><td>無制限</td><td>無制限</td><td>24/365</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="c-heading c-heading--h3">両端（1列目＋最終列）固定</h3>
+      <div class="c-table-wrap">
+        <table class="c-table c-table--striped c-table--sticky-col-both">
+          <thead>
+            <tr>
+              <th>プラン</th>
+              <th>月額</th>
+              <th>転送量</th>
+              <th>ストレージ</th>
+              <th>サポート</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Basic</th>
+              <td>¥980</td><td>3TB</td><td>100GB</td><td>平日</td>
+            </tr>
+            <tr>
+              <th scope="row">Standard</th>
+              <td>¥1,980</td><td>6TB</td><td>300GB</td><td>毎日</td>
+            </tr>
+            <tr>
+              <th scope="row">Premium</th>
+              <td>¥2,980</td><td>無制限</td><td>無制限</td><td>24/365</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- =========================
+         比較表（SPはカード）
+    ========================== -->
+    <section id="section-compare" class="c-section">
+      <h2 class="c-heading c-heading--h2">比較表（スマホは2列カード）</h2>
+
+      <div class="c-table-wrap c-compare__table">
+        <table class="c-table c-table--striped c-table--compare">
+          <caption class="c-table__caption">主要プランの比較</caption>
+          <thead>
+            <tr>
+              <th>仕様</th>
+              <th>Basic</th>
+              <th>Standard</th>
+              <th>Premium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">月額</th>
+              <td>¥980</td><td>¥1,980</td><td>¥2,980</td>
+            </tr>
+            <tr>
+              <th scope="row">ストレージ</th>
+              <td>100GB</td><td>300GB</td><td>無制限</td>
+            </tr>
+            <tr>
+              <th scope="row">転送量</th>
+              <td>3TB</td><td>6TB</td><td>無制限</td>
+            </tr>
+            <tr>
+              <th scope="row">サポート</th>
+              <td>平日対応</td><td>毎日対応</td><td>24/365</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SPカード -->
+      <div class="c-compare-cards" aria-hidden="true">
+        <article class="c-compare-card">
+          <h3 class="c-compare-card__title">Basic</h3>
+          <dl class="c-compare-card__specs">
+            <dt>月額</dt><dd>¥980</dd>
+            <dt>ストレージ</dt><dd>100GB</dd>
+            <dt>転送量</dt><dd>3TB</dd>
+            <dt>サポート</dt><dd>平日対応</dd>
+          </dl>
+          <div class="c-compare-card__cta">
+            <a href="#section-pricing" class="c-btn c-btn--outline c-btn--block">選択する</a>
+          </div>
+        </article>
+
+        <article class="c-compare-card is-rec">
+          <h3 class="c-compare-card__title">Standard</h3>
+          <dl class="c-compare-card__specs">
+            <dt>月額</dt><dd>¥1,980</dd>
+            <dt>ストレージ</dt><dd>300GB</dd>
+            <dt>転送量</dt><dd>6TB</dd>
+            <dt>サポート</dt><dd>毎日対応</dd>
+          </dl>
+          <div class="c-compare-card__cta">
+            <a href="#section-pricing" class="c-btn c-btn--primary c-btn--block">このプランに申し込む</a>
+          </div>
+        </article>
+
+        <article class="c-compare-card">
+          <h3 class="c-compare-card__title">Premium</h3>
+          <dl class="c-compare-card__specs">
+            <dt>月額</dt><dd>¥2,980</dd>
+            <dt>ストレージ</dt><dd>無制限</dd>
+            <dt>転送量</dt><dd>無制限</dd>
+            <dt>サポート</dt><dd>24/365</dd>
+          </dl>
+          <div class="c-compare-card__cta">
+            <a href="#section-pricing" class="c-btn c-btn--secondary c-btn--block">選択する</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================
+         ボタン系
+    ========================== -->
+    <section id="section-buttons" class="c-section">
+      <h2 class="c-heading c-heading--h2">ボタン（CTA/バリエーション）</h2>
+      <div class="c-btn-group">
+        <a href="#" class="c-btn c-btn--primary c-btn--lg">
+          <span class="c-btn__label">今すぐ申し込む</span>
+          <span class="c-btn__icon" aria-hidden="true">→</span>
+        </a>
+        <a href="#" class="c-btn c-btn--secondary">詳細を見る</a>
+        <a href="#" class="c-btn c-btn--outline">比較表へ</a>
+        <button type="button" class="c-btn c-btn--ghost" disabled>在庫切れ</button>
+      </div>
+      <div class="c-btn-group">
+        <a href="https://example-affiliate.jp/track?pid=xxx" class="c-btn c-btn--affiliate c-btn--block" rel="sponsored nofollow" target="_blank">
+          公式サイトで価格を見る <span class="c-btn__sub">（特典あり）</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================
+         アラート / お知らせ / FAQ
+    ========================== -->
+    <!-- 1) ヒーローCTA -->
+<section class="c-cta-hero c-section" id="cta-hero">
+  <div class="c-cta-hero__inner">
+    <h2 class="c-cta-hero__title">いま始めると初月¥0 + ドメイン無料</h2>
+    <p class="c-cta-hero__lead">最短5分で公開。高速・安定・サポートでサイト運用をブースト。</p>
+    <div class="c-cta-hero__actions">
+      <a class="c-btn c-btn--primary c-btn--lg" href="#section-pricing">無料ではじめる</a>
+      <a class="c-btn c-btn--outline c-btn--lg" href="#section-compare">プランを比較</a>
+    </div>
+    <ul class="c-cta-hero__bullets">
+      <li>独自SSL/HTTP3</li><li>自動バックアップ</li><li>移行サポート</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2) バナーCTA（閉じる付） -->
+<input type="checkbox" id="cta-banner-close" class="c-cta-banner__checkbox" hidden>
+<div class="c-cta-banner" role="region" aria-label="キャンペーンのお知らせ">
+  <p class="c-cta-banner__text"><strong>9/30まで</strong>：初月¥0 + 公式限定特典 配布中！</p>
+  <div class="c-cta-banner__actions">
+    <a class="c-btn c-btn--secondary" href="#section-sticky-cta">今すぐチェック</a>
+  </div>
+  <label class="c-cta-banner__close" for="cta-banner-close" aria-label="バナーを閉じる">×</label>
+</div>
+
+<!-- 3) パネルCTA（画像付きカード） -->
+<section class="c-cta-panel c-section">
+  <div class="c-cta-panel__media" role="img" aria-label="導入イメージ"
+       style="background-image:url('https://via.placeholder.com/720x480');"></div>
+  <div class="c-cta-panel__body">
+    <h3 class="c-cta-panel__title">サイト移行はプロにお任せ</h3>
+    <p class="c-cta-panel__desc">ダウンタイム最小・データ完全移行。今だけ移行費用が無料。</p>
+    <ul class="c-cta-panel__list">
+      <li>WordPressワンクリック移行</li>
+      <li>メール設定も代行</li>
+      <li>不明点は即日サポート</li>
+    </ul>
+    <div class="c-cta-panel__actions">
+      <a class="c-btn c-btn--primary" href="#section-form">相談してみる</a>
+      <a class="c-btn c-btn--outline" href="#section-reviews">事例を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4) フローティングCTA（FAB） -->
+<a class="c-cta-fab" href="#section-form" aria-label="無料相談">
+  <span class="c-cta-fab__icon">✉</span>
+  <span class="c-cta-fab__label">無料相談</span>
+</a>
+
+<!-- 5) モーダルCTA（メール登録） -->
+<label class="c-cta-modal__open c-btn c-btn--primary" for="cta-modal-open">特典を受け取る</label>
+<input type="checkbox" id="cta-modal-open" class="c-cta-modal__checkbox" hidden>
+<div class="c-cta-modal" role="dialog" aria-modal="true" aria-labelledby="cta-modal-title">
+  <label class="c-cta-modal__overlay" for="cta-modal-open" aria-hidden="true"></label>
+  <div class="c-cta-modal__dialog">
+    <button class="c-cta-modal__close" aria-label="閉じる">
+      <label for="cta-modal-open">×</label>
+    </button>
+    <h3 id="cta-modal-title" class="c-cta-modal__title">限定特典をメールでお届け</h3>
+    <p class="c-cta-modal__text">最新キャンペーンと導入チェックリストを無料で配布中。</p>
+    <form class="c-cta-modal__form" action="/subscribe" method="post">
+      <input type="email" name="email" required placeholder="you@example.com" class="c-cta-modal__input" aria-label="メールアドレス">
+      <button class="c-btn c-btn--secondary c-btn--block" type="submit">受け取る</button>
+    </form>
+    <small class="c-cta-modal__note">※ いつでも配信停止できます。</small>
+  </div>
+</div>
+
+<!-- 6) 進捗バーCTA（--progress: 0〜100） -->
+<section class="c-cta-progress c-section" style="--progress:72;">
+  <div class="c-cta-progress__bar" aria-label="キャンペーン達成率 72%"></div>
+  <div class="c-cta-progress__row">
+    <span class="c-cta-progress__label">限定特典の残り：28%</span>
+    <a class="c-btn c-btn--primary" href="#section-pricing">今すぐ申し込む</a>
+  </div>
+</section>
+
+<!-- 7) リビールCTA（詳細→クーポン表示） -->
+<details class="c-cta-reveal c-section">
+  <summary class="c-cta-reveal__summary">クーポンをお持ちですか？</summary>
+  <div class="c-cta-reveal__content">
+    <div class="c-cta-reveal__coupon">COUPON<span>2025</span></div>
+    <a class="c-btn c-btn--outline" href="#section-pricing">クーポンを適用</a>
+  </div>
+</details>
+
+
+    <section id="section-info" class="c-section">
+      <h2 class="c-heading c-heading--h2">アラート / お知らせ / FAQ</h2>
+      <div class="c-alert c-alert--info" role="status">初めての方はキャンペーンをご確認ください。</div>
+      <div class="c-alert c-alert--success" role="status">クーポンが適用されました！</div>
+      <div class="c-alert c-alert--warning" role="alert">残り在庫が少なくなっています。</div>
+      <div class="c-alert c-alert--danger" role="alert">エラーが発生しました。時間をおいて再度お試しください。</div>
+
+      <div class="c-notice-bar" role="region" aria-label="お知らせ">
+        <p class="c-notice-bar__text">【期間限定】公式サイト限定の特典配布中！</p>
+        <a class="c-notice-bar__link" href="#section-sticky-cta">今すぐチェック</a>
+      </div>
+
+      <section class="c-faq" aria-label="よくある質問">
+        <details class="c-faq__item">
+          <summary class="c-faq__q">解約はいつでも可能ですか？</summary>
+          <div class="c-faq__a">はい。マイページからいつでも手続きできます。</div>
+        </details>
+        <details class="c-faq__item">
+          <summary class="c-faq__q">支払い方法は何が使えますか？</summary>
+          <div class="c-faq__a">クレジットカード、コンビニ払い、各種QR決済に対応しています。</div>
+        </details>
+      </section>
+    </section>
+
+    <!-- =========================
+         パンくず / ページネーション / サイト内検索
+    ========================== -->
+    <section id="section-breadcrumb" class="c-section">
+      <h2 class="c-heading c-heading--h2">パンくず / ページネーション / サイト内検索</h2>
+
+      <nav class="c-breadcrumb" aria-label="パンくず">
+        <ol class="c-breadcrumb__list">
+          <li class="c-breadcrumb__item"><a href="/">TOP</a></li>
+          <li class="c-breadcrumb__item"><a href="/category">カテゴリ</a></li>
+          <li class="c-breadcrumb__item" aria-current="page">記事タイトル</li>
+        </ol>
+      </nav>
+
+      <nav class="c-pagination" aria-label="ページ送り">
+        <a class="c-pagination__prev" href="?p=1" rel="prev" aria-label="前のページ">‹ 前へ</a>
+        <ol class="c-pagination__list">
+          <li><a class="is-current" href="?p=2" aria-current="page">2</a></li>
+          <li><a href="?p=3">3</a></li>
+          <li><a href="?p=4">4</a></li>
+        </ol>
+        <a class="c-pagination__next" href="?p=3" rel="next" aria-label="次のページ">次へ ›</a>
+      </nav>
+
+      <form class="c-search" role="search" action="/search" method="get">
+        <input class="c-search__input" type="search" name="q" placeholder="キーワードで検索" aria-label="サイト内検索">
+        <button class="c-search__btn" type="submit">検索</button>
+      </form>
+    </section>
+
+    <!-- =========================
+         カード（単体）
+    ========================== -->
+    <section id="section-cards" class="c-section">
+      <h2 class="c-heading c-heading--h2">カード（単体）</h2>
+
+      <article class="c-card c-card--article">
+        <a class="c-card__link" href="#0">
+          <div class="c-card__thumb" style="background-image:url('https://via.placeholder.com/600x360');" role="img" aria-label="記事サムネイル"></div>
+          <div class="c-card__body">
+            <h3 class="c-card__title">SEOに強い記事テンプレの作り方</h3>
+            <p class="c-card__meta">カテゴリ / 2025-09-02</p>
+            <p class="c-card__excerpt">構造化と導線設計でCVRを上げるコツを解説...</p>
+          </div>
+        </a>
+      </article>
+
+      <div class="c-card c-card--product">
+        <div class="c-card__thumb" style="background-image:url('https://via.placeholder.com/600x600');" role="img" aria-label="商品画像"></div>
+        <div class="c-card__body">
+          <h3 class="c-card__title">高速レンタルサーバー</h3>
+          <div class="c-badge c-badge--deal">特典あり</div>
+          <ul class="c-card__features">
+            <li>初期費用無料</li><li>独自SSL</li><li>高速PHP</li>
+          </ul>
+          <div class="c-card__cta">
+            <div class="c-price"><span class="c-price__yen">¥</span>980<span class="c-price__per">/月</span></div>
+            <a class="c-btn c-btn--primary" href="#" rel="sponsored nofollow" target="_blank">公式で見る</a>
+          </div>
+        </div>
+      </div>
+
+      <ol class="c-ranking">
+        <li class="c-ranking__item">
+          <div class="c-ranking__no">1</div>
+          <div class="c-ranking__main">
+            <div class="c-ranking__title">コスパNo.1 サーバー</div>
+            <div class="c-ranking__meta">月額 ¥980 / 独自ドメイン無料</div>
+          </div>
+          <a class="c-btn c-btn--outline" href="#" rel="sponsored nofollow" target="_blank">詳細</a>
+        </li>
+        <li class="c-ranking__item">
+          <div class="c-ranking__no">2</div>
+          <div class="c-ranking__main">
+            <div class="c-ranking__title">高速テーマ</div>
+            <div class="c-ranking__meta">買い切り / 構造化済</div>
+          </div>
+          <a class="c-btn c-btn--outline" href="#" rel="sponsored nofollow" target="_blank">詳細</a>
+        </li>
+        <li class="c-ranking__item">
+          <div class="c-ranking__no">3</div>
+          <div class="c-ranking__main">
+            <div class="c-ranking__title">グローバルCDN</div>
+            <div class="c-ranking__meta">無料枠あり</div>
+          </div>
+          <a class="c-btn c-btn--outline" href="#" rel="sponsored nofollow" target="_blank">詳細</a>
+        </li>
+      </ol>
+    </section>
+
+    <!-- =========================
+         カードグリッド（2列）
+    ========================== -->
+    <section id="section-cards-2col" class="c-section">
+      <h2 class="c-heading c-heading--h2">カードグリッド（2列）</h2>
+      <section class="l-cards l-cards--2col">
+        <!-- 4枚サンプル -->
+        <article class="c-card c-card--article c-card--stack">
+          <a class="c-card__link" href="#0">
+            <div class="c-card__thumb c-card__thumb--16x9" style="background-image:url('https://via.placeholder.com/800x450');" role="img" aria-label="記事サムネイル"></div>
+            <div class="c-card__body">
+              <h3 class="c-card__title u-line-clamp-2">SEOに強い記事テンプレの作り方</h3>
+              <p class="c-card__meta">コンテンツ設計 / 2025-09-02</p>
+              <p class="c-card__excerpt u-line-clamp-3">構造化・導線・内部リンクを最適化して検索流入とCVRを同時に高める実践手法…</p>
+              <span class="c-card__spacer"></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-card c-card--article c-card--stack">
+          <a class="c-card__link" href="#0">
+            <div class="c-card__thumb c-card__thumb--16x9" style="background-image:url('https://via.placeholder.com/800x450/0088ff/ffffff');" role="img" aria-label="LP最適化"></div>
+            <div class="c-card__body">
+              <h3 class="c-card__title u-line-clamp-2">アフィLPの“第一印象”を最適化</h3>
+              <p class="c-card__meta">LPO / 2025-08-21</p>
+              <p class="c-card__excerpt u-line-clamp-3">3秒で伝わるベネフィット、CTAの視線誘導、信頼バッジの使い方をサンプル付きで解説…</p>
+              <span class="c-card__spacer"></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-card c-card--article c-card--stack">
+          <a class="c-card__link" href="#0">
+            <div class="c-card__thumb c-card__thumb--16x9" style="background-image:url('https://via.placeholder.com/800x450/222/fff');" role="img" aria-label="Core Web Vitals"></div>
+            <div class="c-card__body">
+              <h3 class="c-card__title u-line-clamp-2">Core Web Vitalsを一気に改善する</h3>
+              <p class="c-card__meta">高速化 / 2025-07-30</p>
+              <p class="c-card__excerpt u-line-clamp-3">LCP/CLS/INPを同時に底上げする実務テクニック。画像最適化・フォント戦略・JS遅延…</p>
+              <span class="c-card__spacer"></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="c-card c-card--article c-card--stack">
+          <a class="c-card__link" href="#0">
+            <div class="c-card__thumb c-card__thumb--16x9" style="background-image:url('https://via.placeholder.com/800x450/f59e0b/111');" role="img" aria-label="レビュー構造化"></div>
+            <div class="c-card__body">
+              <h3 class="c-card__title u-line-clamp-2">レビュー構造化でCTRを底上げ</h3>
+              <p class="c-card__meta">構造化データ / 2025-08-10</p>
+              <p class="c-card__excerpt u-line-clamp-3">星評価・FAQ・HowToのマークアップを安全に実装して検索結果の見栄えを改善…</p>
+              <span class="c-card__spacer"></span>
+            </div>
+          </a>
+        </article>
+      </section>
+    </section>
+
+    <!-- =========================
+         カードグリッド（3列）
+    ========================== -->
+    <section id="section-cards-3col" class="c-section">
+      <h2 class="c-heading c-heading--h2">カードグリッド（3列）</h2>
+      <section class="l-cards l-cards--3col">
+        <div class="c-card c-card--product">
+          <div class="c-card__thumb c-card__thumb--1x1" style="background-image:url('https://via.placeholder.com/600x600');" role="img" aria-label="高速レンタルサーバー"></div>
+          <div class="c-card__body">
+            <h3 class="c-card__title u-line-clamp-2">高速レンタルサーバー</h3>
+            <div class="c-badge c-badge--deal">特典あり</div>
+            <ul class="c-card__features"><li>初期費用無料</li><li>独自SSL</li><li>高速PHP</li></ul>
+            <div class="c-card__cta">
+              <div class="c-price"><span class="c-price__yen">¥</span>980<span class="c-price__per">/月</span></div>
+              <a class="c-btn c-btn--primary" href="#" rel="sponsored nofollow" target="_blank">公式で見る</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card c-card--product">
+          <div class="c-card__thumb c-card__thumb--1x1" style="background-image:url('https://via.placeholder.com/600x600/0088ff/ffffff');" role="img" aria-label="SEO特化テーマ"></div>
+          <div class="c-card__body">
+            <h3 class="c-card__title u-line-clamp-2">SEO特化WordPressテーマ</h3>
+            <div class="c-badge">買い切り</div>
+            <ul class="c-card__features"><li>高速スコア</li><li>構造化済</li><li>schema拡張</li></ul>
+            <div class="c-card__cta">
+              <div class="c-price"><span class="c-price__yen">¥</span>8,800</div>
+              <a class="c-btn c-btn--outline" href="#" rel="sponsored nofollow" target="_blank">詳細</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card c-card--product">
+          <div class="c-card__thumb c-card__thumb--1x1" style="background-image:url('https://via.placeholder.com/600x600/222/fff');" role="img" aria-label="CDNサービス"></div>
+          <div class="c-card__body">
+            <h3 class="c-card__title u-line-clamp-2">グローバルCDN</h3>
+            <div class="c-badge">無料枠あり</div>
+            <ul class="c-card__features"><li>WAF/IPS</li><li>画像最適化</li><li>エッジキャッシュ</li></ul>
+            <div class="c-card__cta">
+              <div class="c-price"><span class="c-price__yen">¥</span>0<span class="c-price__per">/月〜</span></div>
+              <a class="c-btn c-btn--secondary" href="#" rel="sponsored nofollow" target="_blank">はじめる</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- =========================
+         価格ブロック
+    ========================== -->
+    <section id="section-pricing" class="c-section">
+      <h2 class="c-heading c-heading--h2">価格ブロック</h2>
+      <section class="c-pricing" aria-label="料金プラン">
+        <article class="c-pricing__plan is-rec">
+          <h3 class="c-pricing__name">Standard</h3>
+          <div class="c-pricing__price"><span>¥</span>1,980<small>/月</small></div>
+          <ul class="c-pricing__features"><li>独自ドメイン無料</li><li>高速CDN</li><li>メールサポート</li></ul>
+          <a class="c-btn c-btn--primary c-btn--block" href="#apply">このプランに申し込む</a>
+        </article>
+
+        <article class="c-pricing__plan">
+          <h3 class="c-pricing__name">Basic</h3>
+          <div class="c-pricing__price"><span>¥</span>980<small>/月</small></div>
+          <ul class="c-pricing__features"><li>必要機能を厳選</li><li>SSL対応</li><li>メールサポート</li></ul>
+          <a class="c-btn c-btn--outline c-btn--block" href="#apply">選択する</a>
+        </article>
+
+        <article class="c-pricing__plan">
+          <h3 class="c-pricing__name">Premium</h3>
+          <div class="c-pricing__price"><span>¥</span>2,980<small>/月</small></div>
+          <ul class="c-pricing__features"><li>優先サポート</li><li>自動バックアップ</li><li>WAF/IPS</li></ul>
+          <a class="c-btn c-btn--secondary c-btn--block" href="#apply">選択する</a>
+        </article>
+      </section>
+    </section>
+
+    <!-- =========================
+         区切り / 背景付き強調ブロック
+    ========================== -->
+    <section id="section-highlight" class="c-section">
+      <h2 class="c-heading c-heading--h2">セクション区切り / 背景付き強調</h2>
+      <div class="c-section-divider"></div>
+      <div class="c-section-divider c-section-divider--label" aria-label="次のセクション">
+        <span class="c-section-divider__label">ここから比較</span>
+      </div>
+      <section class="c-highlight-block" id="campaign">
+        <div class="c-highlight-block__inner">
+          <h3 class="c-heading c-heading--h3">【今月限定】初月0円＋独自ドメイン無料</h3>
+          <p class="c-text">公式申込で特典プレゼント。乗り換えも簡単、最短5分で公開。</p>
+          <div class="c-highlight-block__actions">
+            <a class="c-btn c-btn--primary c-btn--lg" href="#section-sticky-cta">今すぐ申し込む</a>
+            <a class="c-btn c-btn--outline" href="#section-pricing">詳細を見る</a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- =========================
+         レビュー / スニペット
+    ========================== -->
+    <section id="section-reviews" class="c-section">
+      <h2 class="c-heading c-heading--h2">レビュー / 口コミスニペット</h2>
+
+      <section class="c-aggregate" aria-label="平均評価">
+        <div class="c-stars c-stars--lg" role="img" aria-label="平均 4.4 / 5" style="--score:4.4;"></div>
+        <div class="c-aggregate__meta"><strong>4.4</strong> / 5 （<span>128</span>件のレビュー）</div>
+      </section>
+
+      <section class="c-reviews" aria-label="ユーザーレビュー">
+        <article class="c-review" itemprop="review" itemscope itemtype="https://schema.org/Review">
+          <header class="c-review__head">
+            <div class="c-stars" role="img" aria-label="5.0 / 5" style="--score:5;"></div>
+            <div class="c-review__meta">
+              <span class="c-review__author" itemprop="author">山田 太郎</span>
+              <time class="c-review__date" itemprop="datePublished" datetime="2025-08-15">2025-08-15</time>
+            </div>
+          </header>
+          <h3 class="c-review__title" itemprop="name">速さとコスパが良い</h3>
+          <p class="c-review__body" itemprop="reviewBody">初期設定が簡単で表示が速い。WordPress移行もスムーズでした。</p>
+        </article>
+
+        <article class="c-review" itemprop="review" itemscope itemtype="https://schema.org/Review">
+          <header class="c-review__head">
+            <div class="c-stars" role="img" aria-label="4.0 / 5" style="--score:4;"></div>
+            <div class="c-review__meta">
+              <span class="c-review__author" itemprop="author">佐藤 花子</span>
+              <time class="c-review__date" itemprop="datePublished" datetime="2025-08-01">2025-08-01</time>
+            </div>
+          </header>
+          <h3 class="c-review__title" itemprop="name">安心して使える</h3>
+          <p class="c-review__body" itemprop="reviewBody">サポートの返信が早いので助かりました。安定しています。</p>
+        </article>
+      </section>
+
+      <!-- JSON-LD（Product + AggregateRating + Review） -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "高速レンタルサーバー",
+        "image": "https://example.com/img/server.jpg",
+        "brand": "CSN Hosting",
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.4", "reviewCount": "128" },
+        "review": [
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "山田 太郎" },
+            "datePublished": "2025-08-15",
+            "name": "速さとコスパが良い",
+            "reviewBody": "初期設定が簡単で表示が速い。WordPress移行もスムーズでした。",
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "佐藤 花子" },
+            "datePublished": "2025-08-01",
+            "name": "安心して使える",
+            "reviewBody": "サポートの返信が早いので助かりました。安定しています。",
+            "reviewRating": { "@type": "Rating", "ratingValue": "4", "bestRating": "5" }
+          }
+        ]
+      }
+      </script>
+    </section>
+
+    <section class="c-filter c-section" aria-label="条件で絞り込み">
+  <div class="c-filter__row">
+    <strong class="c-filter__label">目的</strong>
+    <ul class="c-filter__chips">
+      <li><button class="c-chip is-active" data-filter="purpose:恋活">恋活</button></li>
+      <li><button class="c-chip" data-filter="purpose:婚活">婚活</button></li>
+      <li><button class="c-chip" data-filter="purpose:遊び">気軽</button></li>
+    </ul>
+  </div>
+  <div class="c-filter__row">
+    <strong class="c-filter__label">こだわり</strong>
+    <ul class="c-filter__chips">
+      <li><button class="c-chip" data-filter="verify:本人確認">本人確認</button></li>
+      <li><button class="c-chip" data-filter="privacy:匿名">匿名OK</button></li>
+      <li><button class="c-chip" data-filter="age:20s">20代向け</button></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 比較：カタログ各カードに選択チェック -->
+<label class="c-comparepick">
+  <input type="checkbox" class="c-comparepick__cb" data-id="card-001">
+  <span class="c-comparepick__box" aria-hidden="true"></span> 比較に追加
+</label>
+
+<!-- ページ末尾付近に1回だけ -->
+<div class="c-comparetray" role="region" aria-label="比較トレイ" data-count="0">
+  <div class="c-comparetray__inner">
+    <div class="c-comparetray__text"><strong><span class="c-comparetray__count">0</span>件</strong> 選択中</div>
+    <div class="c-comparetray__actions">
+      <button class="c-btn c-btn--outline" id="tray-clear">クリア</button>
+      <a class="c-btn c-btn--primary" href="/compare">比較する</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const tray = document.querySelector('.c-comparetray');
+  const countEl = document.querySelector('.c-comparetray__count');
+  const clearBtn = document.getElementById('tray-clear');
+  const boxes = [...document.querySelectorAll('.c-comparepick__cb')];
+  const sel = new Set();
+  const update = () => {
+    countEl.textContent = String(sel.size);
+    tray.classList.toggle('is-visible', sel.size > 0);
+  };
+  boxes.forEach(cb => cb.addEventListener('change', e => {
+    e.target.checked ? sel.add(e.target.dataset.id) : sel.delete(e.target.dataset.id);
+    update();
+  }));
+  clearBtn?.addEventListener('click', () => {
+    boxes.forEach(b => (b.checked = false));
+    sel.clear(); update();
+  });
+})();
+</script>
+
+<section class="c-calc c-section" aria-label="還元額シミュレーター">
+  <h3 class="c-heading c-heading--h3">年間いくら得？（例）</h3>
+  <form class="c-calc__form" oninput="calcOut.value = ((conv.value*0.03 + drug.value*0.02 + other.value*0.01)*12 - fee.value) | 0">
+    <div class="c-calc__grid">
+      <label>コンビニ/月 (3%)
+        <input class="c-calc__input" name="conv" type="number" inputmode="numeric" min="0" value="10000">円
+      </label>
+      <label>ドラッグ/月 (2%)
+        <input class="c-calc__input" name="drug" type="number" inputmode="numeric" min="0" value="8000">円
+      </label>
+      <label>その他/月 (1%)
+        <input class="c-calc__input" name="other" type="number" inputmode="numeric" min="0" value="20000">円
+      </label>
+      <label>年会費
+        <input class="c-calc__input" name="fee" type="number" inputmode="numeric" min="0" value="1980">円
+      </label>
+    </div>
+    <output name="calcOut" class="c-calc__out" for="conv drug other fee">0</output>
+    <span class="c-calc__unit">円/年のおトク（概算）</span>
+  </form>
+  <small class="c-text--note">※ キャンペーン・上限・ポイント価値・端数処理は未考慮。目安です。</small>
+</section>
+
+
+
+
+    <!-- =========================
+         問い合わせフォーム
+    ========================== -->
+    <section id="section-form" class="c-section">
+      <h2 class="c-heading c-heading--h2">問い合わせフォーム</h2>
+      <section class="c-form c-form--contact" aria-label="お問い合わせフォーム">
+        <form action="/contact" method="post" novalidate>
+          <div class="c-form__row">
+            <label class="c-form__label" for="name">お名前 <span class="c-form__req">必須</span></label>
+            <input class="c-form__control" type="text" id="name" name="name" required placeholder="山田 太郎" />
+            <small class="c-form__help">フルネームでご入力ください。</small>
+          </div>
+          <div class="c-form__row">
+            <label class="c-form__label" for="email">メールアドレス <span class="c-form__req">必須</span></label>
+            <input class="c-form__control" type="email" id="email" name="email" inputmode="email" required placeholder="you@example.com" />
+            <small class="c-form__help">返信先となるメールアドレス。</small>
+          </div>
+          <div class="c-form__row">
+            <label class="c-form__label" for="topic">お問い合わせ種別</label>
+            <select class="c-form__control" id="topic" name="topic">
+              <option value="">選択してください</option>
+              <option value="quote">見積もり</option>
+              <option value="support">サポート</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          <div class="c-form__row">
+            <label class="c-form__label" for="message">お問い合わせ内容 <span class="c-form__req">必須</span></label>
+            <textarea class="c-form__control" id="message" name="message" rows="6" required placeholder="できるだけ具体的にご記入ください。"></textarea>
+          </div>
+          <div class="c-form__row c-form__row--agree">
+            <label class="c-check">
+              <input class="c-check__input" type="checkbox" name="agree" required>
+              <span class="c-check__box" aria-hidden="true"></span>
+              <span class="c-check__label">プライバシーポリシーに同意する</span>
+            </label>
+          </div>
+          <div class="c-form__actions">
+            <button type="submit" class="c-btn c-btn--primary c-btn--block">送信する</button>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <!-- =========================
+         スケルトン（読み込み中）
+    ========================== -->
+    <section id="section-skeleton" class="c-section">
+      <h2 class="c-heading c-heading--h2">スケルトン（読み込み中）</h2>
+      <section class="l-cards l-cards--3col">
+        <article class="c-card c-card--stack is-skeleton">
+          <div class="c-card__thumb c-card__thumb--16x9 u-skeleton"></div>
+          <div class="c-card__body">
+            <h3 class="u-skeleton u-skeleton--text"></h3>
+            <p class="u-skeleton u-skeleton--text"></p>
+            <p class="u-skeleton u-skeleton--text u-skeleton--short"></p>
+            <span class="c-card__spacer"></span>
+            <div class="u-skeleton u-skeleton--btn"></div>
+          </div>
+        </article>
+        <article class="c-card c-card--stack is-skeleton">
+          <div class="c-card__thumb c-card__thumb--16x9 u-skeleton"></div>
+          <div class="c-card__body">
+            <h3 class="u-skeleton u-skeleton--text"></h3>
+            <p class="u-skeleton u-skeleton--text"></p>
+            <p class="u-skeleton u-skeleton--text u-skeleton--short"></p>
+            <span class="c-card__spacer"></span>
+            <div class="u-skeleton u-skeleton--btn"></div>
+          </div>
+        </article>
+        <article class="c-card c-card--stack is-skeleton">
+          <div class="c-card__thumb c-card__thumb--16x9 u-skeleton"></div>
+          <div class="c-card__body">
+            <h3 class="u-skeleton u-skeleton--text"></h3>
+            <p class="u-skeleton u-skeleton--text"></p>
+            <p class="u-skeleton u-skeleton--text u-skeleton--short"></p>
+            <span class="c-card__spacer"></span>
+            <div class="u-skeleton u-skeleton--btn"></div>
+          </div>
+        </article>
+      </section>
+    </section>
+
+    <!-- =========================
+         サイドナビ
+    ========================== -->
+    <section id="section-sidenav" class="c-section">
+      <h2 class="c-heading c-heading--h2">サイドナビ</h2>
+      <aside class="c-sidenav" aria-label="サイドナビ">
+        <section class="c-sidenav__section">
+          <h3 class="c-sidenav__title">カテゴリ</h3>
+          <ul class="c-sidenav__list">
+            <li class="c-sidenav__item"><a class="c-sidenav__link" href="#0">SEO <span class="c-badge">12</span></a></li>
+            <li class="c-sidenav__item"><a class="c-sidenav__link" href="#0">レンタルサーバー <span class="c-badge">8</span></a></li>
+            <li class="c-sidenav__item"><a class="c-sidenav__link" href="#0">アフィリエイト <span class="c-badge">15</span></a></li>
+          </ul>
+        </section>
+        <section class="c-sidenav__section">
+          <h3 class="c-sidenav__title">タグ</h3>
+          <ul class="c-tagcloud">
+            <li><a href="#0">#speed</a></li>
+            <li><a href="#0">#schema</a></li>
+            <li><a href="#0">#cwv</a></li>
+            <li><a href="#0">#wordpress</a></li>
+          </ul>
+        </section>
+      </aside>
+    </section>
+
+    <!-- =========================
+         スティッキーCTA
+    ========================== -->
+    <section id="section-sticky-cta" class="c-section">
+      <h2 class="c-heading c-heading--h2">スティッキーCTA</h2>
+      <p class="c-text">画面下部に固定されるCTAの表示例です。</p>
+    </section>
+    <div class="c-sticky-cta">
+      <div class="c-sticky-cta__inner">
+        <div class="c-sticky-cta__text">【特典あり】今なら初月¥0キャンペーン中！</div>
+        <a class="c-btn c-btn--primary" href="#section-pricing">今すぐ申し込む</a>
+      </div>
+    </div>
+
+    <!-- =========================
+         フッターナビ
+    ========================== -->
+    <section id="section-footer" class="c-section">
+      <h2 class="c-heading c-heading--h2">フッターナビ</h2>
+      <footer class="c-footer-nav" aria-label="フッターナビ">
+        <div class="c-footer-nav__inner">
+          <nav class="c-footer-nav__col" aria-label="ガイド">
+            <h4 class="c-footer-nav__title">ガイド</h4>
+            <ul class="c-footer-nav__list">
+              <li><a href="#0">運営者情報</a></li>
+              <li><a href="#0">プライバシー</a></li>
+              <li><a href="#0">お問い合わせ</a></li>
+            </ul>
+          </nav>
+          <nav class="c-footer-nav__col" aria-label="カテゴリ">
+            <h4 class="c-footer-nav__title">カテゴリ</h4>
+            <ul class="c-footer-nav__list">
+              <li><a href="#0">SEO</a></li>
+              <li><a href="#0">サーバー</a></li>
+              <li><a href="#0">アフィ</a></li>
+            </ul>
+          </nav>
+          <nav class="c-footer-nav__col" aria-label="サポート">
+            <h4 class="c-footer-nav__title">サポート</h4>
+            <ul class="c-footer-nav__list">
+              <li><a href="#0">よくある質問</a></li>
+              <li><a href="#0">利用規約</a></li>
+              <li><a href="#0">サイトマップ</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="c-footer-nav__copy">© 2025 CSN Lab</div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
