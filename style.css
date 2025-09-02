@@ -2284,4 +2284,159 @@ select.c-form__control {
   .c-calc__grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Steps (timeline 3-step) */
+.c-steps {
+  /* state */
+  /* connector line (vertical on small) */
+}
+.c-steps__list {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+.c-steps__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 0.8rem 0.9rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+.c-steps__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: #fff;
+  background: var(--color-accent);
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.25);
+}
+.c-steps__body {
+  align-self: center;
+}
+.c-steps__title {
+  margin: 0.1rem 0;
+  font-weight: 900;
+}
+.c-steps__desc {
+  margin: 0;
+  color: var(--color-text);
+}
+.c-steps__time {
+  align-self: center;
+  color: var(--color-muted);
+  font-weight: 800;
+  white-space: nowrap;
+}
+.c-steps .is-done .c-steps__icon {
+  background: var(--color-accent-2);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+}
+.c-steps .is-current {
+  outline: 2px solid rgba(14, 165, 233, 0.25);
+}
+.c-steps__item::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: calc(100% + 2px);
+  width: 2px;
+  height: 10px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent);
+}
+.c-steps__item:last-child::after {
+  display: none;
+}
+@media (max-width: 768px) {
+  .c-steps__item {
+    grid-template-columns: auto 1fr;
+  }
+  .c-steps__time {
+    grid-column: 1/-1;
+    justify-self: end;
+  }
+}
+.c-steps__note {
+  margin-top: 0.4rem;
+}
+
+/* Campaign table tweaks (reuse sticky-first) */
+.c-campaign td, .c-campaign th {
+  vertical-align: middle;
+}
+
+.c-campaign td strong {
+  font-weight: 900;
+}
+
+.c-campaign__badge {
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: #eef6ff;
+  color: #0b6bd6;
+}
+
+.c-campaign__badge--hot {
+  background: #fff1e8;
+  color: #c2410c;
+}
+
+/* Trust & Safety banner */
+.c-trust {
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: radial-gradient(900px 300px at 50% 0%, rgba(236, 248, 255, 0.8), #fff);
+}
+.c-trust__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.2rem 0.9rem;
+}
+.c-trust__lead {
+  margin: 0.2rem 0 0.8rem;
+  color: var(--color-muted);
+}
+.c-trust__badges {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.c-trust__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 800;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+.c-trust__icon {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+}
+.c-trust__label {
+  line-height: 1;
+}
+.c-trust__notes {
+  margin-top: 0.6rem;
 }/*# sourceMappingURL=style.css.map */
