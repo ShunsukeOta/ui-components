@@ -2212,4 +2212,24 @@ code, pre {
 
 .c-sidenav .c-btn-group {
   margin-top: 8px;
+}
+
+/* Blog article micro-tuning */
+.c-article .c-figure {
+  margin-block: 12px 16px;
+}
+.c-article .c-figure + .c-toc {
+  margin-top: 8px;
+}
+.c-article p + .c-quote, .c-article .c-list + .c-quote {
+  margin-top: 8px;
+}
+.c-article .c-section > .c-heading--h2 {
+  margin-top: 0.2em;
+}
+.c-article .c-text + .c-list, .c-article .c-text + .c-figure {
+  margin-top: 8px;
+}
+.c-article .c-btn-group {
+  margin-top: 8px;
 }/*# sourceMappingURL=style.css.map */

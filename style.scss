@@ -961,3 +961,14 @@ code, pre { font-family: var(--ff-mono); }
 /* 小さな微調整 */
 .c-cta-hero + .c-section { margin-top: 8px; }
 .c-sidenav .c-btn-group { margin-top: 8px; }
+
+
+/* Blog article micro-tuning */
+.c-article {
+  .c-figure { margin-block: 12px 16px; }
+  .c-figure + .c-toc { margin-top: 8px; }
+  p + .c-quote, .c-list + .c-quote { margin-top: 8px; }
+  .c-section > .c-heading--h2 { margin-top: .2em; }
+  .c-text + .c-list, .c-text + .c-figure { margin-top: 8px; }
+  .c-btn-group { margin-top: 8px; }
+}
