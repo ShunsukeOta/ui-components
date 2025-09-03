@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>【2025年版】マッチングアプリおすすめ比較 | MatchNavi</title>
+  <meta name="description" content="安全・コスパ・出会いやすさで比較。目的別に最適なマッチングアプリを診断＆紹介。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- スキップリンク -->
+  <a class="c-skiplink" href="#main">本文へスキップ</a>
+
+  <!-- ===================== Header ===================== -->
+  <header class="c-header" role="banner">
+    <input type="checkbox" id="nav-open" class="c-header__checkbox" hidden>
+    <div class="c-header__bar">
+      <h1 class="c-header__logo">
+        <a href="/" class="c-header__logo-link">
+          <img src="/img/logo.svg" width="120" height="28" alt="MatchNavi" />
+          <span class="u-visually-hidden">MatchNavi</span>
+        </a>
+      </h1>
+      <nav class="c-header__nav" aria-label="グローバルナビ">
+        <ul class="c-header__list">
+          <li class="c-header__item"><a class="c-header__link" href="/ranking">ランキング</a></li>
+          <li class="c-header__item c-header__item--has-sub">
+            <details class="c-header__details">
+              <summary class="c-header__link">目的別</summary>
+              <ul class="c-header__submenu">
+                <li><a href="/purpose/serious">真剣度高め</a></li>
+                <li><a href="/purpose/light">気軽に出会い</a></li>
+                <li><a href="/purpose/20s">20代向け</a></li>
+              </ul>
+            </details>
+          </li>
+          <li class="c-header__item"><a class="c-header__link" href="/campaign">キャンペーン</a></li>
+          <li class="c-header__item"><a class="c-header__link" href="/safe">安全対策</a></li>
+          <li class="c-header__item"><a class="c-header__link" href="/blog">攻略ブログ</a></li>
+        </ul>
+      </nav>
+      <div class="c-header__actions">
+        <form class="c-header__search" role="search" action="/search" method="get">
+          <input class="c-header__search-input" type="search" name="q" placeholder="アプリ名・目的で検索" aria-label="サイト内検索">
+        </form>
+        <a class="c-btn c-btn--primary c-header__cta" href="#diagnose">3問診断</a>
+        <label class="c-header__toggle" for="nav-open" aria-label="メニューを開閉">
+          <span class="c-header__toggle-bar"></span>
+          <span class="c-header__toggle-bar"></span>
+          <span class="c-header__toggle-bar"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Drawer -->
+    <div class="c-header__drawer" id="global-nav">
+      <nav class="c-header__drawer-nav" aria-label="モバイルナビ">
+        <ul class="c-header__drawer-list">
+          <li><a href="/ranking">ランキング</a></li>
+          <li>
+            <details>
+              <summary>目的別</summary>
+              <ul>
+                <li><a href="/purpose/serious">真剣度高め</a></li>
+                <li><a href="/purpose/light">気軽に出会い</a></li>
+                <li><a href="/purpose/20s">20代向け</a></li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="/campaign">キャンペーン</a></li>
+          <li><a href="/safe">安全対策</a></li>
+          <li><a href="/blog">攻略ブログ</a></li>
+        </ul>
+      </nav>
+      <label for="nav-open" class="c-header__overlay" aria-hidden="true"></label>
+    </div>
+  </header>
+
+  <!-- ヘッダー直下：スクロール追従ミニCTA（常に表示したいなら is-visible を付与） -->
+  <div class="c-mini-cta__sentinel" aria-hidden="true"></div>
+  <section class="c-mini-cta is-visible" aria-label="クーポン案内">
+    <div class="c-mini-cta__inner">
+      <p class="c-mini-cta__text">【今だけ】主要3アプリで初月割＆ポイント増量。診断後に最適クーポンを表示！</p>
+      <div class="c-mini-cta__actions">
+        <a class="c-btn c-btn--primary c-btn--lg" href="#diagnose">3問で診断</a>
+        <a class="c-btn c-btn--outline" href="#campaign">特典一覧</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Main ===================== -->
+  <main id="main" class="l-main" role="main">
+    <div class="l-main__inner">
+
+      <!-- ===== Left: Content ===== -->
+      <div class="l-content">
+
+        <!-- Hero CTA -->
+        <section class="c-cta-hero" id="kv">
+          <div class="c-cta-hero__inner">
+            <h2 class="c-cta-hero__title">2025年最新版：目的別に最適なマッチングアプリを</h2>
+            <p class="c-cta-hero__lead">本気度・年齢層・居住地を選ぶだけ。あなた向けの上位3つと最新キャンペーンを自動提案します。</p>
+            <div class="c-cta-hero__actions">
+              <a class="c-btn c-btn--primary c-btn--lg" href="#diagnose">3問診断をはじめる</a>
+              <a class="c-btn c-btn--outline" href="#ranking">総合ランキングを見る</a>
+            </div>
+            <ul class="c-cta-hero__bullets">
+              <li>安全対策・本人確認済みアプリのみ</li>
+              <li>キャンペーン併用の可否を自動判定</li>
+              <li>広告主の提供を含みます（表記あり）</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 診断：条件チップ（ダミーUI） -->
+        <section class="c-section" id="diagnose" aria-label="3問診断">
+          <h2 class="c-heading c-heading--h2">3問診断で最短比較</h2>
+          <div class="c-filter">
+            <div class="c-filter__row">
+              <span class="c-filter__label">目的</span>
+              <ul class="c-filter__chips">
+                <li><button class="c-chip is-active">真剣</button></li>
+                <li><button class="c-chip">恋活</button></li>
+                <li><button class="c-chip">まずは友だち</button></li>
+              </ul>
+            </div>
+            <div class="c-filter__row">
+              <span class="c-filter__label">年齢層</span>
+              <ul class="c-filter__chips">
+                <li><button class="c-chip">20代</button></li>
+                <li><button class="c-chip is-active">30代</button></li>
+                <li><button class="c-chip">40代以上</button></li>
+              </ul>
+            </div>
+            <div class="c-filter__row">
+              <span class="c-filter__label">重視</span>
+              <ul class="c-filter__chips">
+                <li><button class="c-chip is-active">安全</button></li>
+                <li><button class="c-chip">出会いやすさ</button></li>
+                <li><button class="c-chip">コスパ</button></li>
+              </ul>
+            </div>
+            <div class="c-btn-group">
+              <a class="c-btn c-btn--primary" href="#ranking">結果を見る</a>
+              <a class="c-btn c-btn--outline" href="#compare-tray">比較に追加</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ランキング（抜粋） -->
+        <section class="c-section" id="ranking" aria-label="人気ランキング">
+          <h2 class="c-heading c-heading--h2">人気ランキング TOP3</h2>
+          <ol class="c-ranking">
+            <li class="c-ranking__item">
+              <div class="c-ranking__no">1</div>
+              <div class="c-ranking__main">
+                <div class="c-ranking__title">MatchPro（真剣度高め）</div>
+                <div class="c-ranking__meta">月額 ¥3,900 / 本人確認100% / 24h監視</div>
+              </div>
+              <a class="c-btn c-btn--outline" href="/to/matchpro" rel="sponsored nofollow" target="_blank">公式へ</a>
+            </li>
+            <li class="c-ranking__item">
+              <div class="c-ranking__no">2</div>
+              <div class="c-ranking__main">
+                <div class="c-ranking__title">Casually（ライト層向け）</div>
+                <div class="c-ranking__meta">月額 ¥2,600 / スワイプ型 / 初月割あり</div>
+              </div>
+              <a class="c-btn c-btn--outline" href="/to/casual" rel="sponsored nofollow" target="_blank">公式へ</a>
+            </li>
+            <li class="c-ranking__item">
+              <div class="c-ranking__no">3</div>
+              <div class="c-ranking__main">
+                <div class="c-ranking__title">LocaMeet（地方強い）</div>
+                <div class="c-ranking__meta">月額 ¥2,900 / 地域コミュニティ機能</div>
+              </div>
+              <a class="c-btn c-btn--outline" href="/to/locameet" rel="sponsored nofollow" target="_blank">公式へ</a>
+            </li>
+          </ol>
+        </section>
+
+        <!-- 比較表（PC）＋ スマホカード崩し -->
+        <section class="c-section" aria-label="主要アプリ比較">
+          <h2 class="c-heading c-heading--h2">主要アプリ比較</h2>
+
+          <div class="c-table-wrap c-compare__table">
+            <table class="c-table c-table--striped c-table--compare">
+              <caption class="c-table__caption">安全性・料金・出会いやすさの比較</caption>
+              <thead>
+                <tr>
+                  <th>項目</th>
+                  <th>MatchPro</th>
+                  <th>Casually</th>
+                  <th>LocaMeet</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">本人確認</th><td>厳格（100%）</td><td>ランダム審査</td><td>本人確認必須</td></tr>
+                <tr><th scope="row">安全対策</th><td>24h/通報/ブロック</td><td>AI監視</td><td>24h/匿名OK</td></tr>
+                <tr><th scope="row">月額</th><td>¥3,900</td><td>¥2,600</td><td>¥2,900</td></tr>
+                <tr><th scope="row">出会いやすさ</th><td>◎</td><td>◯</td><td>◯</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="c-compare-cards" aria-hidden="true">
+            <article class="c-compare-card is-rec">
+              <h3 class="c-compare-card__title">MatchPro</h3>
+              <dl class="c-compare-card__specs">
+                <dt>本人確認</dt><dd>厳格（100%）</dd>
+                <dt>安全対策</dt><dd>24h/通報/ブロック</dd>
+                <dt>月額</dt><dd>¥3,900</dd>
+                <dt>出会いやすさ</dt><dd>◎</dd>
+              </dl>
+              <div class="c-compare-card__cta"><a class="c-btn c-btn--primary c-btn--block" href="/to/matchpro" rel="sponsored nofollow" target="_blank">公式で見る</a></div>
+            </article>
+            <article class="c-compare-card">
+              <h3 class="c-compare-card__title">Casually</h3>
+              <dl class="c-compare-card__specs">
+                <dt>本人確認</dt><dd>ランダム審査</dd>
+                <dt>安全対策</dt><dd>AI監視</dd>
+                <dt>月額</dt><dd>¥2,600</dd>
+                <dt>出会いやすさ</dt><dd>◯</dd>
+              </dl>
+              <div class="c-compare-card__cta"><a class="c-btn c-btn--outline c-btn--block" href="/to/casual" rel="sponsored nofollow" target="_blank">公式で見る</a></div>
+            </article>
+            <article class="c-compare-card">
+              <h3 class="c-compare-card__title">LocaMeet</h3>
+              <dl class="c-compare-card__specs">
+                <dt>本人確認</dt><dd>必須</dd>
+                <dt>安全対策</dt><dd>24h/匿名OK</dd>
+                <dt>月額</dt><dd>¥2,900</dd>
+                <dt>出会いやすさ</dt><dd>◯</dd>
+              </dl>
+              <div class="c-compare-card__cta"><a class="c-btn c-btn--secondary c-btn--block" href="/to/locameet" rel="sponsored nofollow" target="_blank">公式で見る</a></div>
+            </article>
+          </div>
+        </section>
+
+        <!-- キャンペーン集約テーブル（sticky first col） -->
+        <section class="c-section" id="campaign" aria-label="キャンペーン一覧">
+          <h2 class="c-heading c-heading--h2">最新キャンペーン</h2>
+          <div class="c-table-wrap">
+            <table class="c-table c-table--striped c-table--sticky-col-first c-campaign">
+              <thead>
+                <tr>
+                  <th>アプリ</th>
+                  <th>特典金額</th>
+                  <th>達成条件</th>
+                  <th>期間</th>
+                  <th>注意点</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">MatchPro<br><span class="c-campaign__badge c-campaign__badge--hot">初月0円</span></th>
+                  <td>最大 ¥3,000</td>
+                  <td>有料登録＋プロフィール充実</td>
+                  <td>〜 9/30</td>
+                  <td>過去登録者は対象外</td>
+                </tr>
+                <tr>
+                  <th scope="row">Casually</th>
+                  <td>ポイント20%増量</td>
+                  <td>招待コード入力</td>
+                  <td>〜 10/15</td>
+                  <td>併用不可の特典あり</td>
+                </tr>
+                <tr>
+                  <th scope="row">LocaMeet</th>
+                  <td>限定スタンプ付与</td>
+                  <td>初回ログイン＋年齢確認</td>
+                  <td>常時</td>
+                  <td>地域により内容差</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- レビュー / 平均 -->
+        <section class="c-section" aria-label="ユーザーレビュー">
+          <h2 class="c-heading c-heading--h2">利用者の声</h2>
+          <div class="c-aggregate">
+            <div class="c-stars c-stars--lg" role="img" aria-label="平均 4.4 / 5" style="--score:4.4;"></div>
+            <div class="c-aggregate__meta"><strong>4.4</strong> / 5 （<span>1,284</span>件）</div>
+          </div>
+          <div class="c-reviews">
+            <article class="c-review">
+              <header class="c-review__head">
+                <div class="c-stars" role="img" aria-label="5.0 / 5" style="--score:5;"></div>
+                <div class="c-review__meta"><span class="c-review__author">H.K</span>・<time class="c-review__date" datetime="2025-08-18">2025-08-18</time></div>
+              </header>
+              <h3 class="c-review__title">安心感がある</h3>
+              <p class="c-review__body">本人確認が厳格で変な人が少ない。サポートのレスも早かった。</p>
+            </article>
+            <article class="c-review">
+              <header class="c-review__head">
+                <div class="c-stars" role="img" aria-label="4.0 / 5" style="--score:4;"></div>
+                <div class="c-review__meta"><span class="c-review__author">R.S</span>・<time class="c-review__date" datetime="2025-07-29">2025-07-29</time></div>
+              </header>
+              <h3 class="c-review__title">地方でも出会えた</h3>
+              <p class="c-review__body">LocaMeetのコミュニティ機能が便利。週末にイベントも見つかった。</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- 安心・安全バナー -->
+        <section class="c-section" aria-label="安全対策">
+          <div class="c-trust">
+            <div class="c-trust__inner">
+              <h2 class="c-heading c-heading--h2">安心・安全への取り組み</h2>
+              <p class="c-trust__lead">本人確認済み・通報/ブロック・匿名設定・24h監視。安全に利用できるアプリのみ掲載しています。</p>
+              <ul class="c-trust__badges">
+                <li class="c-trust__badge"><span class="c-trust__icon">🪪</span><span class="c-trust__label">本人確認済</span></li>
+                <li class="c-trust__badge"><span class="c-trust__icon">🚨</span><span class="c-trust__label">通報</span></li>
+                <li class="c-trust__badge"><span class="c-trust__icon">⛔</span><span class="c-trust__label">ブロック</span></li>
+                <li class="c-trust__badge"><span class="c-trust__icon">🕶️</span><span class="c-trust__label">匿名OK</span></li>
+                <li class="c-trust__badge"><span class="c-trust__icon">🛡️</span><span class="c-trust__label">24h監視</span></li>
+              </ul>
+              <p class="c-trust__notes">※実際の運用は各公式のポリシーをご確認ください。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ブログ / 記事カード -->
+        <section class="c-section" aria-label="攻略ブログ">
+          <h2 class="c-heading c-heading--h2">攻略ブログ新着</h2>
+          <div class="l-cards l-cards--2col">
+            <article class="c-card c-card--article c-card--stack">
+              <a class="c-card__link" href="/post/first-message">
+                <div class="c-card__thumb c-card__thumb--16x9" style="background-image:url('https://via.placeholder.com/800x450/3b82f6/ffffff');" role="img" aria-label="初回メッセージ"></div>
+                <div class="c-card__body">
+                  <h3 class="c-card__title">初回メッセージの正解テンプレ</h3>
+                  <p class="c-card__meta">コミュニケーション術 / 2025-08-10</p>
+                  <p class="c-card__excerpt u-line-clamp-3">失礼にならず会話が続く第一声。NG例とOK例を並べて解説…</p>
+                </div>
+              </a>
+            </article>
+            <article class="c-card c-card--article c-card--stack">
+              <a class="c-card__link" href="/post/safe-photo">
+                <div class="c-card__thumb c-card__thumb--16x9" style="background-image:url('https://via.placeholder.com/800x450/f59e0b/111');" role="img" aria-label="安全な写真"></div>
+                <div class="c-card__body">
+                  <h3 class="c-card__title">身バレを防ぐプロフィール写真の撮り方</h3>
+                  <p class="c-card__meta">安全対策 / 2025-07-21</p>
+                  <p class="c-card__excerpt u-line-clamp-3">背景情報や位置を特定されにくい撮影のコツ、加工の境界線…</p>
+                </div>
+              </a>
+            </article>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="c-section" aria-label="よくある質問">
+          <h2 class="c-heading c-heading--h2">よくある質問</h2>
+          <div class="c-faq">
+            <details class="c-faq__item">
+              <summary class="c-faq__q">無料でも出会えますか？</summary>
+              <div class="c-faq__a">無料の範囲でもマッチは可能ですが、メッセージ開放などは有料が一般的です。キャンペーンで初月がお得な場合があります。</div>
+            </details>
+            <details class="c-faq__item">
+              <summary class="c-faq__q">安全面は大丈夫？</summary>
+              <div class="c-faq__a">本人確認・通報・ブロック・24時間監視等の仕組みがあるアプリのみ掲載しています。</div>
+            </details>
+          </div>
+        </section>
+
+        <!-- 下部CTA -->
+        <section class="c-highlight-block" id="cta">
+          <div class="c-highlight-block__inner">
+            <h2 class="c-heading c-heading--h2">あなたに合うアプリを今すぐ確認</h2>
+            <p class="c-text">3問だけでベスト3＋特典が分かります。</p>
+            <div class="c-highlight-block__actions">
+              <a class="c-btn c-btn--primary c-btn--lg" href="#diagnose">3問診断</a>
+              <a class="c-btn c-btn--outline" href="#campaign">特典一覧</a>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /l-content -->
+
+      <!-- ===== Right: Sidebar ===== -->
+      <aside class="l-sidebar" aria-label="サイドバー">
+        <!-- まとめカード（固定サマリー） -->
+        <section class="c-sidenav">
+          <h3 class="c-sidenav__title">いまの条件</h3>
+          <ul class="c-sidenav__list">
+            <li class="c-sidenav__item"><span class="c-sidenav__link">目的：<strong>真剣</strong></span></li>
+            <li class="c-sidenav__item"><span class="c-sidenav__link">年齢層：<strong>30代</strong></span></li>
+            <li class="c-sidenav__item"><span class="c-sidenav__link">重視：<strong>安全</strong></span></li>
+          </ul>
+          <div class="c-btn-group" style="margin-top:10px;">
+            <a class="c-btn c-btn--primary c-btn--block" href="#ranking">この条件で見る</a>
+          </div>
+        </section>
+
+        <!-- 比較トレイへ誘導 -->
+        <section class="c-sidenav">
+          <h3 class="c-sidenav__title">比較中</h3>
+          <p class="c-text">選択数：<strong>0</strong> 件</p>
+          <div class="c-btn-group">
+            <a class="c-btn c-btn--outline c-btn--block" href="#compare-tray">比較へ</a>
+          </div>
+        </section>
+
+        <!-- カテゴリ -->
+        <section class="c-sidenav">
+          <h3 class="c-sidenav__title">カテゴリ</h3>
+          <ul class="c-sidenav__list">
+            <li class="c-sidenav__item"><a class="c-sidenav__link" href="/purpose/serious">真剣 <span class="c-badge">12</span></a></li>
+            <li class="c-sidenav__item"><a class="c-sidenav__link" href="/purpose/light">ライト <span class="c-badge">9</span></a></li>
+            <li class="c-sidenav__item"><a class="c-sidenav__link" href="/purpose/region">地方 <span class="c-badge">7</span></a></li>
+          </ul>
+        </section>
+
+        <!-- タグ -->
+        <section class="c-sidenav">
+          <h3 class="c-sidenav__title">タグ</h3>
+          <ul class="c-tagcloud">
+            <li><a href="/tag/first-message">#初回メッセ</a></li>
+            <li><a href="/tag/profile">#プロフィール</a></li>
+            <li><a href="/tag/safety">#安全</a></li>
+          </ul>
+        </section>
+
+        <!-- お知らせ -->
+        <div class="c-notice-bar" role="region" aria-label="お知らせ">
+          <p class="c-notice-bar__text">【限定】招待コードでポイント増量中</p>
+          <a class="c-notice-bar__link" href="#campaign">詳しく</a>
+        </div>
+      </aside>
+    </div><!-- /l-main__inner -->
+  </main>
+
+  <!-- 固定フッターCTA -->
+  <div class="c-sticky-cta" id="sticky-cta">
+    <div class="c-sticky-cta__inner">
+      <div class="c-sticky-cta__text">3問であなた向けのアプリがわかる！</div>
+      <a class="c-btn c-btn--primary" href="#diagnose">診断をはじめる</a>
+    </div>
+  </div>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="c-footer-nav" role="contentinfo" aria-label="フッターナビ">
+    <div class="c-footer-nav__inner">
+      <nav class="c-footer-nav__col" aria-label="ガイド">
+        <h4 class="c-footer-nav__title">ガイド</h4>
+        <ul class="c-footer-nav__list">
+          <li><a href="/about">運営情報</a></li>
+          <li><a href="/policy">プライバシー</a></li>
+          <li><a href="/contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <nav class="c-footer-nav__col" aria-label="カテゴリ">
+        <h4 class="c-footer-nav__title">カテゴリ</h4>
+        <ul class="c-footer-nav__list">
+          <li><a href="/ranking">ランキング</a></li>
+          <li><a href="/campaign">キャンペーン</a></li>
+          <li><a href="/safe">安全対策</a></li>
+        </ul>
+      </nav>
+      <nav class="c-footer-nav__col" aria-label="サポート">
+        <h4 class="c-footer-nav__title">サポート</h4>
+        <ul class="c-footer-nav__list">
+          <li><a href="/faq">よくある質問</a></li>
+          <li><a href="/terms">利用規約</a></li>
+          <li><a href="/sitemap">サイトマップ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="c-footer-nav__copy">© 2025 MatchNavi</div>
+  </footer>
+
+  <!-- 比較トレイ（下部に出現） -->
+  <div id="compare-tray" class="c-comparetray">
+    <div class="c-comparetray__inner">
+      <div class="c-comparetray__text">比較に追加：<strong class="c-comparetray__count">0</strong> 件</div>
+      <div class="c-comparetray__actions">
+        <a class="c-btn c-btn--outline" href="/compare">比較ページへ</a>
+        <button class="c-btn c-btn--primary">共有リンクをコピー</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
